@@ -47,6 +47,9 @@ String::String(const String& model){
 //~ }
  //~ 
 
+size_t String::capacity() const{
+  return capacity_ ;
+}
 
 // ===========================================================================
 //                                 Destructor
