@@ -17,6 +17,20 @@ String::String(){
   capacity_ = 0;
 }
 
+String::String(const char* cstr){
+  int i=0; // initialise iterator
+  size_=0;
+  while(cstr[i]!='\0'){
+    size_++;
+    i++;
+  }
+  grid_=new char[size_+1];
+  for(size_t i=0;i<=size_;i++){
+    grid_[i]=cstr[i];
+  }
+  capacity_=size_;
+  
+}
 String::String(const String& model){
   size_=model.size_;
   capacity_=model.capacity_;
@@ -37,7 +51,9 @@ String::String(const String& model){
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================
-
+String::~String(){
+  delete[] grid_ ;
+}
 // ===========================================================================
 //                               Public Methods
 // ===========================================================================
@@ -48,4 +64,3 @@ String::String(const String& model){
 // ===========================================================================
 
 
-//on initialise la capacity a la taille du tableau
