@@ -17,6 +17,23 @@ String::String(){
   capacity_ = 0;
 }
 
+String::String(const char* cstr){
+  char it=cstr[0]; // initialise iterator
+  size_=0;
+  int k=1;
+  while(it!='\0'){
+    size_++;
+    it=cstr[k];
+    k++;
+  }
+  grid_=new char[size_+1];
+  for(size_t i=0;i<=size_;i++){
+    grid_[i]=cstr[i];
+  }
+  capacity_=size_;
+  
+}
+
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================
