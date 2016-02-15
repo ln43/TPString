@@ -18,13 +18,11 @@ String::String(){
 }
 
 String::String(const char* cstr){
-  char it=cstr[0]; // initialise iterator
+  int i=0; // initialise iterator
   size_=0;
-  int k=1;
-  while(it!='\0'){
+  while(cstr[i]!='\0'){
     size_++;
-    it=cstr[k];
-    k++;
+    i++;
   }
   grid_=new char[size_+1];
   for(size_t i=0;i<=size_;i++){
