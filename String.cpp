@@ -61,6 +61,11 @@ size_t String::length() const noexcept{
   return size_;
 }
 
+size_t String::max_size() const noexcept{
+  return MAX_SIZE_;
+}
+
+
 // ===========================================================================
 //                              Protected Methods
 // ===========================================================================
