@@ -106,7 +106,7 @@ void String::resize(size_t n, char c){
   }
 }
 
-<<<<<<< HEAD
+
 size_t String::size(){
   return size_;
 }
@@ -119,13 +119,16 @@ void String::clear(){
   size_=0;
   }
   
-//~ const String& String::operator=(String const& s1){
-  //~ grid_=s1.grid_;
-  //~ 
-  //~ size_=s1.size_;
-  //~ capacity_=s1.capacity_;
-  //~ return *this;
-//~ }
+const String& String::operator=(String const& s1){
+  delete[] grid_;
+  grid_=new char[s1.size_+1];
+  for(size_t i=0;i<s1.size_;i++){
+    grid_[i]=s1.grid_[i];
+    }
+  size_=s1.size_;
+  capacity_=s1.capacity_;
+  return *this;
+}
 
 char* String::c_str() const{
   char* newChar=new char[size_]; //creation of a new String since we're dealing with pointers
@@ -135,8 +138,7 @@ char* String::c_str() const{
   return newChar;
   }
   
-  
-=======
+
 String& String::operator=(char c){
   grid_[0]=c;
   for(size_t i=1;i<=capacity_;i++){
@@ -146,7 +148,7 @@ String& String::operator=(char c){
   return *this;
 }
 
->>>>>>> 9e978ce7958bdd49f78247e2a058f157758b97f9
+
 // ===========================================================================
 //                              Protected Methods
 // ===========================================================================
