@@ -71,6 +71,21 @@ void String::resize(size_t n){
       grid_[i]='\0'; //keep capacity, insert null character
     }
     size_=n;
+  }else if (n>=MAX_SIZE_){
+    char* newChar=new char[MAX_SIZE_+1];
+    for(size_t i=0;i<=size_;i++){
+      newChar[i]=grid_[i];
+    }
+    for(size_t i=size_;i<MAX_SIZE_;i++){
+      newChar[i]='\0';
+    }
+    newChar[MAX_SIZE_]='\0';
+    size_=MAX_SIZE_;
+    if(capacity_<MAX_SIZE_){
+      capacity_=MAX_SIZE_;
+    }
+    delete[] grid_;
+    grid_=newChar;
   }else{
     char* newChar=new char[n+1];
     for(size_t i=0;i<=size_;i++){
@@ -95,6 +110,21 @@ void String::resize(size_t n, char c){
       grid_[i]='\0'; //keep capacity, insert null character
     }
     size_=n;
+  }else if (n>=MAX_SIZE_){
+    char* newChar=new char[MAX_SIZE_+1];
+    for(size_t i=0;i<=size_;i++){
+      newChar[i]=grid_[i];
+    }
+    for(size_t i=size_;i<MAX_SIZE_;i++){
+      newChar[i]=c;
+    }
+    newChar[MAX_SIZE_]='\0';
+    size_=MAX_SIZE_;
+    if(capacity_<MAX_SIZE_){
+      capacity_=MAX_SIZE_;
+    }
+    delete[] grid_;
+    grid_=newChar;
   }else{
     char* newChar=new char[n+1];
     for(size_t i=0;i<=size_;i++){
