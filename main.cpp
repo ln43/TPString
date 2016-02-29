@@ -23,10 +23,13 @@ int main(){
 
   str2='c';
 
+  str2.resize((size_t)3,'c');
+  String str6(str);
+  str2='c';
   String operatoregal;
   operatoregal=str4;
   printf("Size: %zu \n",operatoregal.size());
-
+//==============
   printf("%zu \n",str2.capacity()) ;
   printf("%d \n",str2.empty()) ;
   printf("%d \n",str.empty()) ;
@@ -42,6 +45,8 @@ int main(){
   str5.reserve((size_t)5) ;
   printf("Size : %zu\n",str5.length()) ;
   printf("Capacity : %zu\n",str5.capacity()) ;
-
+  str5.reserve((size_t)200) ;
+  printf("Size : %zu\n",str5.length()) ;
+  printf("Capacity : %zu\n",str5.capacity()) ;
   return 0 ;
 }
