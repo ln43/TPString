@@ -37,7 +37,7 @@ String::String(const String& model){
   capacity_=model.capacity_;
   grid_=new char[size_+1];  //taking into account the \0
 
-  for(size_t i=0;i<size_;i++){ //revoir le int(size)!!!
+  for(size_t i=0;i<size_;i++){
     grid_[i]=model.grid_[i];
     }
   grid_[size_]='\0';
@@ -51,6 +51,7 @@ String::String(const String& model){
 String::~String(){
   delete[] grid_ ;
 }
+
 // ===========================================================================
 //                               Public Methods
 // ===========================================================================
@@ -136,30 +137,12 @@ bool String::empty() const{
   return empty ;
 }
  
-const String& String::operator=(String const& s1){
-  delete[] grid_;
-  grid_=new char[s1.size_+1];
-  for(size_t i=0;i<s1.size_;i++){
-    grid_[i]=s1.grid_[i];
-    }
-  size_=s1.size_;
-  capacity_=s1.capacity_;
-  return *this;
-}
 
 
 const char* String::c_str() const{
   return grid_;
 }
   
-
-char* String::c_str() const{
-  char* newChar=new char[size_]; //creation of a new String since we're dealing with pointers
-  for(size_t i=0;i<size_;i++){   //if we modify grid_, newChar returned won't be modified
-    newChar[i]=grid_[i];
-  }
-  return newChar;
-}
 
 void String::reserve(size_t n) {
   char* newGrid ;
@@ -184,6 +167,16 @@ void String::reserve(size_t n) {
   }
 }
 
+const String& String::operator=(String const& s1){
+  delete[] grid_;
+  grid_=new char[s1.size_+1];
+  for(size_t i=0;i<s1.size_;i++){
+    grid_[i]=s1.grid_[i];
+    }
+  size_=s1.size_;
+  capacity_=s1.capacity_;
+  return *this;
+}
 
 String& String::operator=(char c){
   grid_[0]=c;

@@ -16,10 +16,10 @@ int main(){
   str2.clear();
   printf("Size: %zu \n",str2.size());
   
-  char* essai=str3.c_str();
+  const char* essai=str3.c_str();
   printf(essai);
   
-  //String str5="trop" +str4;
+  String str6="trop" +str4;
 
   str2='c';
 

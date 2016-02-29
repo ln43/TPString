@@ -28,7 +28,7 @@ class String{
   size_t max_size() const noexcept; //Return maxe_size of the string
   size_t capacity() const ;
   size_t size();
-  char* c_str() const;
+  const char* c_str() const;
   // =========================================================================
   //                                  Setters
   // =========================================================================
