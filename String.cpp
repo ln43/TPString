@@ -124,6 +124,18 @@ bool String::empty() const{
   return empty ;
 }
 
+void String::reserve(size_t n) {
+  char* newGrid = new char[n+1] ;
+  if (n > capacity_ || (n < capacity_ && n > size_)){
+    for(size_t i=0 ; i<=size_ ; i++){
+      newGrid[i]=grid_[i] ;
+    }
+    capacity_ = n ;
+    delete[] grid_ ;
+    grid_ = newGrid ;
+  }
+}
+
 // ===========================================================================
 //                              Protected Methods
 // ===========================================================================
