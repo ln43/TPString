@@ -9,6 +9,7 @@ int main(){
 
   printf("Length : %zu \n",str2.length());
   printf("Max_Size : %zu \n",str2.max_size());
+<<<<<<< HEAD
   //~ str2.resize((size_t)7);
   printf("Size: %zu \n",str2.size());
   str2.clear();
@@ -17,5 +18,11 @@ int main(){
   printf(essai);
 
   printf(essai);
+=======
+  str2.resize((size_t)3,'c');
+  String str3(str);
+  str2='c';
+  
+>>>>>>> 9e978ce7958bdd49f78247e2a058f157758b97f9
   return 0 ;
 }
