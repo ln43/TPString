@@ -43,6 +43,8 @@ class String{
   //                              Public Methods
   // =========================================================================
   const String& operator=(const String &s1);
+  const String& operator+(const String &s1);
+  //~ friend String operator+(const String&, const char&);
 	
 	protected :
   // =========================================================================
