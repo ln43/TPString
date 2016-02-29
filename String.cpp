@@ -113,6 +113,15 @@ void String::resize(size_t n, char c){
   }
 }
 
+//test if the string is empty (if size_==0)
+bool String::empty() const{
+  bool empty = false ;
+  if (size_ == 0){
+    empty = true ;
+  }
+  return empty ;
+}
+
 // ===========================================================================
 //                              Protected Methods
 // ===========================================================================

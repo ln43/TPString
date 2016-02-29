@@ -9,5 +9,7 @@ int main(){
   str2.resize((size_t)7);
   String str3(str);
   printf("%zu \n",str2.capacity()) ;
+  printf("%d \n",str2.empty()) ;
+  printf("%d \n",str.empty()) ;
   return 0 ;
 }
