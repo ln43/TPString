@@ -41,11 +41,6 @@ String::String(const String& model){
     }
   grid_[size_+1]='\0';
 }
-//~ 
-//~ String::String(const c_str& model){
-  //~ 
-//~ }
- //~ 
 
 size_t String::capacity() const{
   return capacity_ ;
@@ -68,6 +63,55 @@ size_t String::max_size() const noexcept{
   return MAX_SIZE_;
 }
 
+void String::resize(size_t n){
+  char* newChar=new char[n+1];
+  if(n<=size_){
+    for(size_t i=0;i<n;i++){
+      newChar[i]=grid_[i];
+    }
+    newChar[n]='\0';
+    size_=n; //capacity stay unchanged
+    delete[] grid_;
+    grid_=newChar;
+  }else{
+    for(size_t i=0;i<=size_;i++){
+      newChar[i]=grid_[i];
+    }
+    for(size_t i=size_;i<n;i++){
+      newChar[i]=char();
+    }
+    newChar[n]='\0';
+    size_=n;
+    capacity_=n;
+    delete[] grid_;
+    grid_=newChar;
+  }
+}
+
+void String::resize(size_t n, char c){
+  char* newChar=new char[n+1];
+  if(n<=size_){
+    for(size_t i=0;i<n;i++){
+      newChar[i]=grid_[i];
+    }
+    newChar[n]='\0';
+    size_=n; //capacity stay unchanged
+    delete[] grid_;
+    grid_=newChar;
+  }else{
+    for(size_t i=0;i<=size_;i++){
+      newChar[i]=grid_[i];
+    }
+    for(size_t i=size_;i<n;i++){
+      newChar[i]=c;
+    }
+    newChar[n]='\0';
+    size_=n;
+    capacity_=n;
+    delete[] grid_;
+    grid_=newChar;
+  }
+}
 
 // ===========================================================================
 //                              Protected Methods

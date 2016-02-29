@@ -30,6 +30,8 @@ class String{
   // =========================================================================
   //                                  Setters
   // =========================================================================
+  void resize (size_t n);//change size, insert null if n>size_
+  void resize (size_t n, char c); //change size, insert c if n>size_ 
 
   // =========================================================================
   //                                 Operators
