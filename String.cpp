@@ -216,7 +216,7 @@ String& String::operator=(char c){
   size_=1;
   return *this;
 }
-/*
+
 String& String::operator=(char* s){
   int i = 0 ;
   size_t size_s = 0 ;
@@ -225,11 +225,27 @@ String& String::operator=(char* s){
     i++;
   }
   if(size_s <= capacity_){
-    for(size_t j ; j<
+    for(size_t j=0 ; j<size_s ; j++){
+      grid_[j] = s[j] ;
+    }
+    grid_[size_s]='\0' ;
+    size_ = size_s ;
+  } else {
+    this->reserve(size_s) ;
+    for(size_t j=0 ; j<size_s ; j++){
+      grid_[j] = s[j] ;
+    }
+    if(size_s <= MAX_SIZE_){
+      grid_[size_s]='\0' ;
+      size_ = size_s ;
+    } else {
+      grid_[MAX_SIZE_]='\0';
+      size_ = MAX_SIZE_ ;
+    }
   }
   return *this;
 }
-*/
+
 
 // ===========================================================================
 //                              Protected Methods

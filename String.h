@@ -40,7 +40,7 @@ class String{
   //                                 Operators
   // =========================================================================
   String& operator=(char c);
-  //String& operator=(char* s);
+  String& operator=(char* s);
   friend String operator+(const String& lhs,const char* rhs);
   friend String operator+(const char* lhs,const String& rhs);
   // =========================================================================

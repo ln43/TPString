@@ -47,5 +47,13 @@ int main(){
   //~ str5.reserve((size_t)200) ;
   //~ printf("Size : %zu\n",str5.length()) ;
   //~ printf("Capacity : %zu\n",str5.capacity()) ;
+  
+  String elea1("Bla");
+  printf("Size : %zu\n",elea1.length()) ;
+  printf("Capacity : %zu\n",elea1.capacity()) ;
+  char* essaibis = "BIM !" ;
+  elea1 = essaibis ;
+  printf("Size : %zu\n",elea1.length()) ;
+  printf("Capacity : %zu\n",elea1.capacity()) ;
   return 0 ;
 }
