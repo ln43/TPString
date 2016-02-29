@@ -24,10 +24,13 @@ class String{
   // =========================================================================
   //                                  Getters
   // =========================================================================
-
+  size_t length() const noexcept; //Return length of the string
+  size_t max_size() const noexcept; //Return maxe_size of the string
   // =========================================================================
   //                                  Setters
   // =========================================================================
+  void resize (size_t n);//change size, insert null if n>size_
+  void resize (size_t n, char c); //change size, insert c if n>size_ 
 
   // =========================================================================
   //                                 Operators
