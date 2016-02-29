@@ -42,9 +42,6 @@ String::String(const String& model){
   grid_[size_+1]='\0';
 }
 
-size_t String::capacity() const{
-  return capacity_ ;
-}
 
 // ===========================================================================
 //                                 Destructor
@@ -62,6 +59,11 @@ size_t String::length() const noexcept{
 size_t String::max_size() const noexcept{
   return MAX_SIZE_;
 }
+
+size_t String::capacity() const{
+  return capacity_ ;
+}
+
 
 void String::resize(size_t n){
   char* newChar=new char[n+1];
