@@ -40,6 +40,8 @@ class String{
   //                                 Operators
   // =========================================================================
   String& operator=(char c);
+  friend String operator+(const String& lhs,const char* rhs);
+  friend String operator+(const char* lhs,const String& rhs);
   // =========================================================================
   //                              Public Methods
   // =========================================================================

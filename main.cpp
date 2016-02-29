@@ -12,12 +12,16 @@ int main(){
 
   str2.resize((size_t)7);
   printf("Size: %zu \n",str2.size());
+  
   str2.clear();
   printf("Size: %zu \n",str2.size());
+  
   char* essai=str3.c_str();
   printf(essai);
+  
+  String str5="trop" +str4;
 
-  printf(essai);
+  str2='c';
 
   str2.resize((size_t)3,'c');
   String str6(str);
