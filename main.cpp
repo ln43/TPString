@@ -4,13 +4,18 @@
 int main(){
   String str;
   String str2("Salut");
-<<<<<<< HEAD
+  String str4("Beaucoup");
   String str3(str2);
-=======
+
   printf("Length : %zu \n",str2.length());
   printf("Max_Size : %zu \n",str2.max_size());
-  str2.resize((size_t)7);
-  String str3(str);
->>>>>>> fe8b8d2eb2667c6d6d5aa02cc35e13b8325d4620
+  //~ str2.resize((size_t)7);
+  printf("Size: %zu \n",str2.size());
+  str2.clear();
+  printf("Size: %zu \n",str2.size());
+  char* essai=str3.c_str();
+  printf(essai);
+
+  printf(essai);
   return 0 ;
 }

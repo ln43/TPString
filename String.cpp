@@ -42,11 +42,7 @@ String::String(const String& model){
     }
   grid_[size_]='\0';
 }
-<<<<<<< HEAD
 
-
-=======
->>>>>>> fe8b8d2eb2667c6d6d5aa02cc35e13b8325d4620
 
 
 // ===========================================================================
@@ -116,6 +112,35 @@ void String::resize(size_t n, char c){
   }
 }
 
+size_t String::size(){
+  return size_;
+}
+
+void String::clear(){
+
+  delete[] grid_;
+  grid_ = new char[1] ; //remplacer le 1 par la capacity?
+  grid_[0] ='\0' ;
+  size_=0;
+  }
+  
+//~ const String& String::operator=(String const& s1){
+  //~ grid_=s1.grid_;
+  //~ 
+  //~ size_=s1.size_;
+  //~ capacity_=s1.capacity_;
+  //~ return *this;
+//~ }
+
+char* String::c_str() const{
+  char* newChar=new char[size_]; //creation of a new String since we're dealing with pointers
+  for(size_t i=0;i<size_;i++){   //if we modify grid_, newChar returned won't be modified
+    newChar[i]=grid_[i];
+  }
+  return newChar;
+  }
+  
+  
 // ===========================================================================
 //                              Protected Methods
 // ===========================================================================
