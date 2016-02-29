@@ -226,14 +226,12 @@ String operator+(const String& lhs,const char* rhs){
     sizeRhs++;
     i++;
   }
-  char* newChar=new char[sizeLhs+sizeRhs];
+  char* newChar=new char[sizeLhs+sizeRhs+1];
   for(size_t i=0;i<sizeLhs;i++){
     newChar[i]=lhs.grid_[i];
   }
-  int it=0; //initialise iterator of rhs
   for(size_t i=sizeLhs;i<=sizeLhs+sizeRhs;i++){
-    newChar[i]=rhs[it];
-    it++;
+    newChar[i]=rhs[i-sizeLhs];
   }
   String newS(newChar);
   delete newChar;
@@ -248,14 +246,12 @@ String operator+(const char* lhs,const String& rhs){
     sizeLhs++;
     i++;
   }
-  char* newChar=new char[sizeLhs+sizeRhs];
+  char* newChar=new char[sizeLhs+sizeRhs+1];
   for(size_t i=0;i<sizeLhs;i++){
     newChar[i]=lhs[i];
   }
-  int it=0; //initialise iterator of rhs
   for(size_t i=sizeLhs;i<=sizeLhs+sizeRhs;i++){
-    newChar[i]=rhs.grid_[it];
-    it++;
+    newChar[i]=rhs.grid_[i-sizeLhs];
   }
   String newS(newChar);
   delete newChar;
