@@ -217,10 +217,19 @@ String& String::operator=(char c){
 
 
 
-
-
-
 String operator+(const String& s1,char c){
+  char* tempgrid=new char[s1.size_+2] ;
+  for(size_t i;i<s1.size_;i++){
+    tempgrid[i]=s1.grid_[i];
+  }
+  tempgrid[s1.size_]=c;
+  tempgrid[s1.size_+1]='\0';
+  return String(tempgrid);
+  delete[] tempgrid;
+
+  }
+
+String operator+(char c,const String& s1){
   char* tempgrid=new char[s1.size_+2] ;
   for(size_t i;i<s1.size_;i++){
     tempgrid[i]=s1.grid_[i];

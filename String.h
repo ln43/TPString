@@ -50,6 +50,8 @@ class String{
   const String& operator=(const String &s1);
   const String& operator+(const String &s1);
   friend String operator+(const String&,char);
+  friend String operator+(char,const String&);
+	
 	
 	protected :
   // =========================================================================
