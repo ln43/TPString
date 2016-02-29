@@ -63,7 +63,7 @@ size_t String::max_size() const noexcept{
 void String::resize(size_t n){
   if(n<=size_){
     for(size_t i=n;i<=capacity_;i++){
-      grid_[i]='\0';
+      grid_[i]='\0'; //keep capacity, insert null character
     }
     size_=n;
   }else{
@@ -85,7 +85,7 @@ void String::resize(size_t n){
 void String::resize(size_t n, char c){
   if(n<=size_){
     for(size_t i=n;i<=capacity_;i++){
-      grid_[i]='\0';
+      grid_[i]='\0'; //keep capacity, insert null character
     }
     size_=n;
   }else{
@@ -102,6 +102,15 @@ void String::resize(size_t n, char c){
     delete[] grid_;
     grid_=newChar;
   }
+}
+
+String& String::operator=(char c){
+  grid_[0]=c;
+  for(size_t i=1;i<=capacity_;i++){
+    grid_[i]='\0';
+  }
+  size_=1;
+  return *this;
 }
 
 // ===========================================================================

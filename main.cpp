@@ -8,5 +8,7 @@ int main(){
   printf("Max_Size : %zu \n",str2.max_size());
   str2.resize((size_t)3,'c');
   String str3(str);
+  str2='c';
+  
   return 0 ;
 }
