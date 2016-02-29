@@ -37,10 +37,15 @@ String::String(const String& model){
   capacity_=model.capacity_;
   grid_=new char[size_+1];  //taking into account the \0
 
+
+  for(size_t i=0;i<size_;i++){ 
+
   for(size_t i=0;i<size_;i++){
+
     grid_[i]=model.grid_[i];
     }
   grid_[size_]='\0';
+  }
 }
 
 
@@ -203,6 +208,7 @@ const String& String::operator=(String const& s1){
   for(size_t i=0;i<s1.size_;i++){
     grid_[i]=s1.grid_[i];
     }
+  grid_[s1.size_]='\0';
   size_=s1.size_;
   capacity_=s1.capacity_;
   return *this;
@@ -247,6 +253,28 @@ String& String::operator=(char* s){
 }
 
 
+
+
+
+
+String operator+(const String& s1,char c){
+  char* tempgrid=new char[s1.size_+2] ;
+  for(size_t i;i<s1.size_;i++){
+    tempgrid[i]=s1.grid_[i];
+  }
+  tempgrid[s1.size_]=c;
+  tempgrid[s1.size_+1]='\0';
+  return String(tempgrid);
+  delete[] tempgrid;
+
+  }
+
+
+
+
+
+
+
 // ===========================================================================
 //                              Protected Methods
 // ===========================================================================
@@ -263,14 +291,12 @@ String operator+(const String& lhs,const char* rhs){
     sizeRhs++;
     i++;
   }
-  char* newChar=new char[sizeLhs+sizeRhs];
+  char* newChar=new char[sizeLhs+sizeRhs+1];
   for(size_t i=0;i<sizeLhs;i++){
     newChar[i]=lhs.grid_[i];
   }
-  int it=0; //initialise iterator of rhs
   for(size_t i=sizeLhs;i<=sizeLhs+sizeRhs;i++){
-    newChar[i]=rhs[it];
-    it++;
+    newChar[i]=rhs[i-sizeLhs];
   }
   String newS(newChar);
   delete newChar;
@@ -285,14 +311,12 @@ String operator+(const char* lhs,const String& rhs){
     sizeLhs++;
     i++;
   }
-  char* newChar=new char[sizeLhs+sizeRhs];
+  char* newChar=new char[sizeLhs+sizeRhs+1];
   for(size_t i=0;i<sizeLhs;i++){
     newChar[i]=lhs[i];
   }
-  int it=0; //initialise iterator of rhs
   for(size_t i=sizeLhs;i<=sizeLhs+sizeRhs;i++){
-    newChar[i]=rhs.grid_[it];
-    it++;
+    newChar[i]=rhs.grid_[i-sizeLhs];
   }
   String newS(newChar);
   delete newChar;

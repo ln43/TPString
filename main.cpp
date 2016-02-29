@@ -19,11 +19,16 @@ int main(){
   const char* essai=str3.c_str();
   printf(essai);
   
-  String str6="trop" +str4;
+  String str6=str4 +" trop" ;
 
   str2='c';
 
+
+  str2.resize((size_t)3,'c');
+  //~ String str6(str);
+
   str2.resize((size_t)102,'c');
+
   str2='c';
   String operatoregal;
   operatoregal=str4;
