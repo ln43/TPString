@@ -56,9 +56,10 @@ int main(){
   String elea1("Bla");
   printf("Size : %zu\n",elea1.length()) ;
   printf("Capacity : %zu\n",elea1.capacity()) ;
-  char* essaibis = "BIM !" ;
-  elea1 = essaibis ;
-  printf("Size : %zu\n",elea1.length()) ;
-  printf("Capacity : %zu\n",elea1.capacity()) ;
+
+  String elea2(" bla");
+  String elea3 = elea1 + elea2 ;
+  printf("Size : %zu\n",elea3.length()) ;
+  printf("Capacity : %zu\n",elea3.capacity()) ;
   return 0 ;
 }

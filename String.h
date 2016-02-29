@@ -41,17 +41,18 @@ class String{
   // =========================================================================
   String& operator=(char c);
   String& operator=(char* s);
+  const String& operator=(const String &s1); //const devant ?
   friend String operator+(const String& lhs,const char* rhs);
   friend String operator+(const char* lhs,const String& rhs);
+  friend String operator+(const String& lhs,const String& rhs);
+  friend String operator+(const String&,char);
+	
   // =========================================================================
   //                              Public Methods
   // =========================================================================
   bool empty() const ;
   void reserve(size_t n);
-  const String& operator=(const String &s1);
-  const String& operator+(const String &s1);
-  friend String operator+(const String&,char);
-	
+
 	protected :
   // =========================================================================
   //                             Protected Methods

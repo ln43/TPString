@@ -323,3 +323,17 @@ String operator+(const char* lhs,const String& rhs){
   return newS;
 }
 
+String operator+(const String& lhs,const String& rhs){
+  char* sum = new char[lhs.size_ + rhs.size_ -1];
+  for(size_t i=0 ; i<lhs.size_ ; i++){
+    sum[i] = lhs.grid_[i] ;
+  }
+  for(size_t j=0 ; j<rhs.size_ ; j++){
+    sum[lhs.size_ + j] = rhs.grid_[j] ;
+  }
+  sum[lhs.size_ + rhs.size_]='\0' ;
+  String Res(sum) ;
+  delete sum;
+  return Res;
+}
+
