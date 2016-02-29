@@ -26,11 +26,14 @@ class String{
   // =========================================================================
   size_t length() const noexcept; //Return length of the string
   size_t max_size() const noexcept; //Return maxe_size of the string
+  size_t size();
+  char* c_str() const;
   // =========================================================================
   //                                  Setters
   // =========================================================================
   void resize (size_t n);//change size, insert null if n>size_
   void resize (size_t n, char c); //change size, insert c if n>size_ 
+  void clear();
 
   // =========================================================================
   //                                 Operators
@@ -39,7 +42,7 @@ class String{
   // =========================================================================
   //                              Public Methods
   // =========================================================================
-
+  //~ const String& operator=(const String &s1);
 	
 	protected :
   // =========================================================================
