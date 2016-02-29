@@ -48,6 +48,8 @@ class String{
   bool empty() const ;
   void reserve(size_t n);
   const String& operator=(const String &s1);
+  const String& operator+(const String &s1);
+  friend String operator+(const String&,char);
 	
 	protected :
   // =========================================================================
