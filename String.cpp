@@ -68,7 +68,6 @@ size_t String::capacity() const{
 
 
 void String::resize(size_t n){
-
   if(n<=size_){
     for(size_t i=n;i<=capacity_;i++){
       grid_[i]='\0'; //keep capacity, insert null character
@@ -134,7 +133,11 @@ bool String::empty() const{
 }
  
 const String& String::operator=(String const& s1){
-  grid_=s1.grid_;
+  delete[] grid_;
+  grid_=new char[s1.size_+1];
+  for(size_t i=0;i<s1.size_;i++){
+    grid_[i]=s1.grid_[i];
+    }
   size_=s1.size_;
   capacity_=s1.capacity_;
   return *this;
@@ -168,6 +171,7 @@ String& String::operator=(char c){
   size_=1;
   return *this;
 }
+
 
 // ===========================================================================
 //                              Protected Methods

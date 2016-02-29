@@ -22,6 +22,10 @@ int main(){
   str2.resize((size_t)3,'c');
   String str3(str);
   str2='c';
+  String operatoregal;
+  operatoregal=str4;
+  printf("Size: %zu \n",operatoregal.size());
+//==============
   printf("%zu \n",str2.capacity()) ;
   printf("%d \n",str2.empty()) ;
   printf("%d \n",str.empty()) ;
