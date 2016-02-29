@@ -23,8 +23,12 @@ int main(){
 
   str2='c';
 
+<<<<<<< HEAD
   str2.resize((size_t)3,'c');
   //~ String str6(str);
+=======
+  str2.resize((size_t)102,'c');
+>>>>>>> 6e8a6fd64d913f4f952005f4031f49b785363067
   str2='c';
   String operatoregal;
   operatoregal=str4;
@@ -45,8 +49,8 @@ int main(){
   str5.reserve((size_t)5) ;
   printf("Size : %zu\n",str5.length()) ;
   printf("Capacity : %zu\n",str5.capacity()) ;
-  str5.reserve((size_t)200) ;
-  printf("Size : %zu\n",str5.length()) ;
-  printf("Capacity : %zu\n",str5.capacity()) ;
+  //~ str5.reserve((size_t)200) ;
+  //~ printf("Size : %zu\n",str5.length()) ;
+  //~ printf("Capacity : %zu\n",str5.capacity()) ;
   return 0 ;
 }
