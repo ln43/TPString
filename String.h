@@ -24,6 +24,8 @@ class String{
   // =========================================================================
   //                                  Getters
   // =========================================================================
+  size_t length() const noexcept; //Return length of the string
+  size_t max_size() const noexcept; //Return maxe_size of the string
   size_t capacity() const ;
   // =========================================================================
   //                                  Setters
