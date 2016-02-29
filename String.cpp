@@ -62,6 +62,11 @@ size_t String::max_size() const noexcept{
   return MAX_SIZE_;
 }
 
+size_t String::capacity() const{
+  return capacity_ ;
+}
+
+
 void String::resize(size_t n){
   if(n<=size_){
     for(size_t i=n;i<=capacity_;i++){
@@ -121,20 +126,54 @@ void String::clear(){
   grid_[0] ='\0' ;
   size_=0;
   }
-  
-//~ const String& String::operator=(String const& s1){
-  //~ grid_=s1.grid_;
-  //~ 
-  //~ size_=s1.size_;
-  //~ capacity_=s1.capacity_;
-  //~ return *this;
-//~ }
 
+//test if the string is empty (if size_==0)
+bool String::empty() const{
+  bool empty = false ;
+  if (size_ == 0){
+    empty = true ;
+  }
+  return empty ;
+}
+ 
+const String& String::operator=(String const& s1){
+  delete[] grid_;
+  grid_=new char[s1.size_+1];
+  for(size_t i=0;i<s1.size_;i++){
+    grid_[i]=s1.grid_[i];
+    }
+  size_=s1.size_;
+  capacity_=s1.capacity_;
+  return *this;
+}
+
+<<<<<<< HEAD
 const char* String::c_str() const{
   return grid_;
 }
   
   
+=======
+char* String::c_str() const{
+  char* newChar=new char[size_]; //creation of a new String since we're dealing with pointers
+  for(size_t i=0;i<size_;i++){   //if we modify grid_, newChar returned won't be modified
+    newChar[i]=grid_[i];
+  }
+  return newChar;
+}
+
+void String::reserve(size_t n) {
+  char* newGrid = new char[n+1] ;
+  if (n > capacity_ || (n < capacity_ && n > size_)){
+    for(size_t i=0 ; i<=size_ ; i++){
+      newGrid[i]=grid_[i] ;
+    }
+    capacity_ = n ;
+    delete[] grid_ ;
+    grid_ = newGrid ;
+  }
+}
+>>>>>>> cd72eda46f080853094169d1721b5866b58e583a
 
 String& String::operator=(char c){
   grid_[0]=c;
