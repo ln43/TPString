@@ -17,6 +17,8 @@ String::String(){
   capacity_ = 0;
 }
 
+/* Constructs a string object
+ * param cstr : c-string to initialize the grid_ */
 String::String(const char* cstr){
   int i=0; // initialise iterator
   size_=0;
@@ -60,10 +62,13 @@ String::~String(){
 // ===========================================================================
 //                               Public Methods
 // ===========================================================================
+
+// Returns the length of the string, in terms of bytes.
 size_t String::length() const noexcept{
   return size_;
 }
 
+// Returns the maximum length the string can reach.
 size_t String::max_size() const noexcept{
   return MAX_SIZE_;
 }
@@ -72,7 +77,8 @@ size_t String::capacity() const{
   return capacity_ ;
 }
 
-
+/*Resize the String
+ * param n : the size of the new String**/
 void String::resize(size_t n){
   if(n<=size_){
     for(size_t i=n;i<=capacity_;i++){
@@ -112,6 +118,9 @@ void String::resize(size_t n){
   }
 }
 
+/*Resize the String
+ * param n : the size of the new String
+ * param c : the caracter to insert if n<size_ **/
 void String::resize(size_t n, char c){
   if(n<=size_){
     for(size_t i=n;i<=capacity_;i++){
@@ -214,6 +223,9 @@ const String& String::operator=(String const& s1){
   return *this;
 }
 
+/*Assigns a new value to the string, replacing its current contents.
+* param c : the character which will replace the String
+* return the String as reference*/
 String& String::operator=(char c){
   grid_[0]=c;
   for(size_t i=1;i<=capacity_;i++){
@@ -257,6 +269,12 @@ String& String::operator=(char* s){
 
 
 
+
+
+// ===========================================================================
+//                                 Operators
+// ===========================================================================
+
 String operator+(const String& s1,char c){
   char* tempgrid=new char[s1.size_+2] ;
   for(size_t i;i<s1.size_;i++){
@@ -266,25 +284,15 @@ String operator+(const String& s1,char c){
   tempgrid[s1.size_+1]='\0';
   return String(tempgrid);
   delete[] tempgrid;
+}
 
-  }
-
-
-
-
-
-
-
-// ===========================================================================
-//                              Protected Methods
-// ===========================================================================
-
-
-// ===========================================================================
-//                                 Operators
-// ===========================================================================
+/*Returns a newly constructed string object with its value being 
+the concatenation of the characters in lhs followed by those of rhs.
+* param lhs : the string to concatenate
+* param rhs : the c-string to add at the end of the string
+* return : the concatenation of the two params*/
 String operator+(const String& lhs,const char* rhs){
-  int i=0; // initialise iterator
+  int i=0; // initialize iterator
   size_t sizeRhs=0;
   size_t sizeLhs=lhs.size_;
   while(rhs[i]!='\0'){
@@ -303,8 +311,13 @@ String operator+(const String& lhs,const char* rhs){
   return newS;
 }
 
+/*Returns a newly constructed string object with its value being 
+the concatenation of the characters in lhs followed by those of rhs.
+* param lhs : the c-string to add at the begining of the string
+* param rhs : the string to concatenate
+* return : the concatenation of the two params*/
 String operator+(const char* lhs,const String& rhs){
-  int i=0; // initialise iterator
+  int i=0; // initialize iterator
   size_t sizeLhs=0;
   size_t sizeRhs=rhs.size_;
   while(lhs[i]!='\0'){

@@ -52,7 +52,10 @@ int main(){
   //~ str5.reserve((size_t)200) ;
   //~ printf("Size : %zu\n",str5.length()) ;
   //~ printf("Capacity : %zu\n",str5.capacity()) ;
-  
+  //~ 
+  String str360;
+  str360=str2+'d';
+  printf("Size : %zu\n",str360.length()) ;
   String elea1("Bla");
   printf("Size : %zu\n",elea1.length()) ;
   printf("Capacity : %zu\n",elea1.capacity()) ;
