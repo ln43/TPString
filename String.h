@@ -27,7 +27,7 @@ class String{
   size_t length() const noexcept; //Return length of the string
   size_t max_size() const noexcept; //Return maxe_size of the string
   size_t size();
-  char* c_str() const;
+  const char* c_str() const;
   // =========================================================================
   //                                  Setters
   // =========================================================================
@@ -39,6 +39,8 @@ class String{
   //                                 Operators
   // =========================================================================
   String& operator=(char c);
+  friend String operator+(const String& lhs,const char* rhs);
+  friend String operator+(const char* lhs,const String& rhs);
   // =========================================================================
   //                              Public Methods
   // =========================================================================
@@ -69,7 +71,7 @@ class String{
 // ===========================================================================
 //                           Operators' definitions
 // ===========================================================================
-  String operator+(const String& lhs,const char* rhs);
+  
 
 
 // ===========================================================================

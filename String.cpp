@@ -110,7 +110,6 @@ void String::resize(size_t n, char c){
   }
 }
 
-<<<<<<< HEAD
 size_t String::size(){
   return size_;
 }
@@ -131,16 +130,12 @@ void String::clear(){
   //~ return *this;
 //~ }
 
-char* String::c_str() const{
-  char* newChar=new char[size_]; //creation of a new String since we're dealing with pointers
-  for(size_t i=0;i<size_;i++){   //if we modify grid_, newChar returned won't be modified
-    newChar[i]=grid_[i];
-  }
-  return newChar;
-  }
+const char* String::c_str() const{
+  return grid_;
+}
   
   
-=======
+
 String& String::operator=(char c){
   grid_[0]=c;
   for(size_t i=1;i<=capacity_;i++){
@@ -150,7 +145,7 @@ String& String::operator=(char c){
   return *this;
 }
 
->>>>>>> 9e978ce7958bdd49f78247e2a058f157758b97f9
+
 // ===========================================================================
 //                              Protected Methods
 // ===========================================================================
@@ -162,14 +157,44 @@ String& String::operator=(char c){
 String operator+(const String& lhs,const char* rhs){
   int i=0; // initialise iterator
   size_t sizeRhs=0;
+  size_t sizeLhs=lhs.size_;
   while(rhs[i]!='\0'){
     sizeRhs++;
     i++;
   }
-  char* newChar=new char[lhs.length()+sizeRhs+1];
-  for(size_t i=0;i<lhs.length();i++){
-    newChar[i]='a';
+  char* newChar=new char[sizeLhs+sizeRhs];
+  for(size_t i=0;i<sizeLhs;i++){
+    newChar[i]=lhs.grid_[i];
   }
-  return newChar;
+  int it=0; //initialise iterator of rhs
+  for(size_t i=sizeLhs;i<=sizeLhs+sizeRhs;i++){
+    newChar[i]=rhs[it];
+    it++;
+  }
+  String newS(newChar);
+  delete newChar;
+  return newS;
+}
+
+String operator+(const char* lhs,const String& rhs){
+  int i=0; // initialise iterator
+  size_t sizeLhs=0;
+  size_t sizeRhs=rhs.size_;
+  while(lhs[i]!='\0'){
+    sizeLhs++;
+    i++;
+  }
+  char* newChar=new char[sizeLhs+sizeRhs];
+  for(size_t i=0;i<sizeLhs;i++){
+    newChar[i]=lhs[i];
+  }
+  int it=0; //initialise iterator of rhs
+  for(size_t i=sizeLhs;i<=sizeLhs+sizeRhs;i++){
+    newChar[i]=rhs.grid_[it];
+    it++;
+  }
+  String newS(newChar);
+  delete newChar;
+  return newS;
 }
 
