@@ -19,7 +19,7 @@ int main(){
   const char* essai=str3.c_str();
   printf(essai);
   
-  String str6="trop" +str4;
+  String str6=str4 +" trop" ;
 
   str2='c';
 
