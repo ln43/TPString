@@ -37,13 +37,16 @@ String::String(const String& model){
   capacity_=model.capacity_;
   grid_=new char[size_+1];  //taking into account the \0
 
+
   for(size_t i=0;i<size_;i++){ 
+
+  for(size_t i=0;i<size_;i++){
+
     grid_[i]=model.grid_[i];
     }
   grid_[size_]='\0';
+  }
 }
-
-
 
 // ===========================================================================
 //                                 Destructor
@@ -51,6 +54,7 @@ String::String(const String& model){
 String::~String(){
   delete[] grid_ ;
 }
+
 // ===========================================================================
 //                               Public Methods
 // ===========================================================================
@@ -60,6 +64,10 @@ size_t String::length() const noexcept{
 
 size_t String::max_size() const noexcept{
   return MAX_SIZE_;
+}
+
+size_t String::capacity() const{
+  return capacity_ ;
 }
 
 void String::resize(size_t n){
@@ -78,7 +86,9 @@ void String::resize(size_t n){
     }
     newChar[n]='\0';
     size_=n;
-    capacity_=n;
+    if(capacity_<n){
+      capacity_=n;
+    }
     delete[] grid_;
     grid_=newChar;
   }
@@ -100,12 +110,13 @@ void String::resize(size_t n, char c){
     }
     newChar[n]='\0';
     size_=n;
-    capacity_=n;
+    if(capacity_<n){
+      capacity_=n;
+    }
     delete[] grid_;
     grid_=newChar;
   }
 }
-
 
 size_t String::size(){
   return size_;
@@ -118,7 +129,41 @@ void String::clear(){
   grid_[0] ='\0' ;
   size_=0;
   }
-  
+
+//test if the string is empty (if size_==0)
+bool String::empty() const{
+  bool empty = false ;
+  if (size_ == 0){
+    empty = true ;
+  }
+  return empty ;
+}
+
+const char* String::c_str() const{
+  return grid_;
+}
+
+void String::reserve(size_t n) {
+  char* newGrid ;
+  if(n <= MAX_SIZE_) {
+    newGrid = new char[n+1] ;
+  } else {
+    newGrid = new char[MAX_SIZE_+1] ;
+  }
+  if (n > capacity_ || (n < capacity_ && n > size_)){
+    for(size_t i=0 ; i<=size_ ; i++){
+      newGrid[i]=grid_[i] ;
+    }
+    if(n <= MAX_SIZE_){
+      capacity_ = n ;
+    } else {
+      capacity_ = MAX_SIZE_ ;
+    }
+    delete[] grid_ ;
+    grid_ = newGrid ;
+  }
+}
+
 const String& String::operator=(String const& s1){
   delete[] grid_;
   grid_=new char[s1.size_+1];
@@ -131,15 +176,6 @@ const String& String::operator=(String const& s1){
   return *this;
 }
 
-char* String::c_str() const{
-  char* newChar=new char[size_]; //creation of a new String since we're dealing with pointers
-  for(size_t i=0;i<size_;i++){   //if we modify grid_, newChar returned won't be modified
-    newChar[i]=grid_[i];
-  }
-  return newChar;
-  }
-  
-
 String& String::operator=(char c){
   grid_[0]=c;
   for(size_t i=1;i<=capacity_;i++){
@@ -148,28 +184,27 @@ String& String::operator=(char c){
   size_=1;
   return *this;
 }
-//~ 
-//~ const String& operator+(const String &s1,const char c){
-  //~ char* tempgrid=new char[s1.size_+2] ;
-  //~ for(size_t i;i<s1.size_;i++){
-    //~ tempgrid[i]=s1.grid_[i];
-  //~ }
-  //~ tempgrid[s1.size_]=c;
-  //~ tempgrid[s1.size_+1]='\0';
-  //~ return String(tempgrid);
-//~ 
-  //~ }
 
-String::String(const String& model){
-  size_=model.size_;
-  capacity_=model.capacity_;
-  grid_=new char[size_+1];  //taking into account the \0
 
-  for(size_t i=0;i<size_;i++){ 
-    grid_[i]=model.grid_[i];
-    }
-  grid_[size_]='\0';
-}
+
+
+
+
+String operator+(const String& s1,char c){
+  char* tempgrid=new char[s1.size_+2] ;
+  for(size_t i;i<s1.size_;i++){
+    tempgrid[i]=s1.grid_[i];
+  }
+  tempgrid[s1.size_]=c;
+  tempgrid[s1.size_+1]='\0';
+  return String(tempgrid);
+  delete[] tempgrid;
+
+  }
+
+
+
+
 
 
 
@@ -177,4 +212,51 @@ String::String(const String& model){
 //                              Protected Methods
 // ===========================================================================
 
+
+// ===========================================================================
+//                                 Operators
+// ===========================================================================
+String operator+(const String& lhs,const char* rhs){
+  int i=0; // initialise iterator
+  size_t sizeRhs=0;
+  size_t sizeLhs=lhs.size_;
+  while(rhs[i]!='\0'){
+    sizeRhs++;
+    i++;
+  }
+  char* newChar=new char[sizeLhs+sizeRhs];
+  for(size_t i=0;i<sizeLhs;i++){
+    newChar[i]=lhs.grid_[i];
+  }
+  int it=0; //initialise iterator of rhs
+  for(size_t i=sizeLhs;i<=sizeLhs+sizeRhs;i++){
+    newChar[i]=rhs[it];
+    it++;
+  }
+  String newS(newChar);
+  delete newChar;
+  return newS;
+}
+
+String operator+(const char* lhs,const String& rhs){
+  int i=0; // initialise iterator
+  size_t sizeLhs=0;
+  size_t sizeRhs=rhs.size_;
+  while(lhs[i]!='\0'){
+    sizeLhs++;
+    i++;
+  }
+  char* newChar=new char[sizeLhs+sizeRhs];
+  for(size_t i=0;i<sizeLhs;i++){
+    newChar[i]=lhs[i];
+  }
+  int it=0; //initialise iterator of rhs
+  for(size_t i=sizeLhs;i<=sizeLhs+sizeRhs;i++){
+    newChar[i]=rhs.grid_[it];
+    it++;
+  }
+  String newS(newChar);
+  delete newChar;
+  return newS;
+}
 
