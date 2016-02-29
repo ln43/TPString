@@ -76,7 +76,9 @@ void String::resize(size_t n){
     }
     newChar[n]='\0';
     size_=n;
-    capacity_=n;
+    if(capacity_<n){
+      capacity_=n;
+    }
     delete[] grid_;
     grid_=newChar;
   }
@@ -98,7 +100,9 @@ void String::resize(size_t n, char c){
     }
     newChar[n]='\0';
     size_=n;
-    capacity_=n;
+    if(capacity_<n){
+      capacity_=n;
+    }
     delete[] grid_;
     grid_=newChar;
   }
@@ -117,4 +121,21 @@ String& String::operator=(char c){
 //                              Protected Methods
 // ===========================================================================
 
+
+// ===========================================================================
+//                                 Operators
+// ===========================================================================
+String operator+(const String& lhs,const char* rhs){
+  int i=0; // initialise iterator
+  size_t sizeRhs=0;
+  while(rhs[i]!='\0'){
+    sizeRhs++;
+    i++;
+  }
+  char* newChar=new char[lhs.length()+sizeRhs+1];
+  for(size_t i=0;i<lhs.length();i++){
+    newChar[i]='a';
+  }
+  return newChar;
+}
 
