@@ -147,13 +147,12 @@ const String& String::operator=(String const& s1){
   return *this;
 }
 
-<<<<<<< HEAD
+
 const char* String::c_str() const{
   return grid_;
 }
   
-  
-=======
+
 char* String::c_str() const{
   char* newChar=new char[size_]; //creation of a new String since we're dealing with pointers
   for(size_t i=0;i<size_;i++){   //if we modify grid_, newChar returned won't be modified
@@ -180,9 +179,11 @@ void String::reserve(size_t n) {
     }
     delete[] grid_ ;
     grid_ = newGrid ;
+  } else {
+    delete[] newGrid ;
   }
 }
->>>>>>> cd72eda46f080853094169d1721b5866b58e583a
+
 
 String& String::operator=(char c){
   grid_[0]=c;
@@ -192,7 +193,20 @@ String& String::operator=(char c){
   size_=1;
   return *this;
 }
-
+/*
+String& String::operator=(char* s){
+  int i = 0 ;
+  size_t size_s = 0 ;
+  while(s[i]!='\0'){
+    size_s ++;
+    i++;
+  }
+  if(size_s <= capacity_){
+    for(size_t j ; j<
+  }
+  return *this;
+}
+*/
 
 // ===========================================================================
 //                              Protected Methods
