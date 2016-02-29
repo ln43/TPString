@@ -41,11 +41,6 @@ String::String(const String& model){
     }
   grid_[size_+1]='\0';
 }
-//~ 
-//~ String::String(const c_str& model){
-  //~ 
-//~ }
- //~ 
 
 
 // ===========================================================================
