@@ -5,6 +5,6 @@ int main(){
   
   String str;
   String str2("Salut");
-  String str3(str);
+  String str3(str2);
   return 0 ;
 }

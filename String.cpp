@@ -31,21 +31,19 @@ String::String(const char* cstr){
   capacity_=size_;
   
 }
+
 String::String(const String& model){
   size_=model.size_;
   capacity_=model.capacity_;
-  grid_=new char[size_+1];
+  grid_=new char[size_+1];  //taking into account the \0
 
-  for(int i=0;i<int(size_);i++){ //revoir le int(size)!!!
+  for(size_t i=0;i<size_;i++){ //revoir le int(size)!!!
     grid_[i]=model.grid_[i];
     }
-  grid_[size_+1]='\0';
+  grid_[size_]='\0';
 }
-//~ 
-//~ String::String(const c_str& model){
-  //~ 
-//~ }
- //~ 
+
+
 
 
 // ===========================================================================
