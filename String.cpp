@@ -7,6 +7,7 @@
 //                       Definition of static attributes
 // ===========================================================================
 const size_t String::MAX_SIZE_ = 100 ;
+
 // ===========================================================================
 //                                Constructors
 // ===========================================================================
@@ -49,8 +50,6 @@ String::String(const String& model){
   grid_[size_]='\0';
   }
 }
-
-
 
 // ===========================================================================
 //                                 Destructor
@@ -181,12 +180,9 @@ bool String::empty() const{
   return empty ;
 }
  
-
-
 const char* String::c_str() const{
   return grid_;
 }
-  
 
 void String::reserve(size_t n) {
   char* newGrid ;
@@ -263,13 +259,6 @@ String& String::operator=(char* s){
   }
   return *this;
 }
-
-
-
-
-
-
-
 
 // ===========================================================================
 //                                 Operators
