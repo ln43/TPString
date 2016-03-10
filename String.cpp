@@ -7,6 +7,7 @@
 //                       Definition of static attributes
 // ===========================================================================
 const size_t String::MAX_SIZE_ = 100 ;
+
 // ===========================================================================
 //                                Constructors
 // ===========================================================================
@@ -178,7 +179,7 @@ bool String::empty() const{
   }
   return empty ;
 }
-
+ 
 const char* String::c_str() const{
   return grid_;
 }
@@ -201,6 +202,8 @@ void String::reserve(size_t n) {
     }
     delete[] grid_ ;
     grid_ = newGrid ;
+  } else {
+    delete[] newGrid ;
   }
 }
 
@@ -228,22 +231,34 @@ String& String::operator=(char c){
   return *this;
 }
 
-
-
-
-String operator+(const String& s1,char c){
-  char* tempgrid=new char[s1.size_+2] ;
-  for(size_t i;i<s1.size_;i++){
-    tempgrid[i]=s1.grid_[i];
+String& String::operator=(char* s){
+  int i = 0 ;
+  size_t size_s = 0 ;
+  while(s[i]!='\0'){
+    size_s ++;
+    i++;
   }
-  tempgrid[s1.size_]=c;
-  tempgrid[s1.size_+1]='\0';
-  return String(tempgrid);
-  delete[] tempgrid;
-
+  if(size_s <= capacity_){
+    for(size_t j=0 ; j<size_s ; j++){
+      grid_[j] = s[j] ;
+    }
+    grid_[size_s]='\0' ;
+    size_ = size_s ;
+  } else {
+    this->reserve(size_s) ;
+    for(size_t j=0 ; j<size_s ; j++){
+      grid_[j] = s[j] ;
+    }
+    if(size_s <= MAX_SIZE_){
+      grid_[size_s]='\0' ;
+      size_ = size_s ;
+    } else {
+      grid_[MAX_SIZE_]='\0';
+      size_ = MAX_SIZE_ ;
+    }
   }
-
-String operator+(char c,const String& s1){
+  return *this;
+}
 
 // ===========================================================================
 //                                 Operators
@@ -308,5 +323,19 @@ String operator+(const char* lhs,const String& rhs){
   String newS(newChar);
   delete newChar;
   return newS;
+}
+
+String operator+(const String& lhs,const String& rhs){
+  char* sum = new char[lhs.size_ + rhs.size_ -1];
+  for(size_t i=0 ; i<lhs.size_ ; i++){
+    sum[i] = lhs.grid_[i] ;
+  }
+  for(size_t j=0 ; j<rhs.size_ ; j++){
+    sum[lhs.size_ + j] = rhs.grid_[j] ;
+  }
+  sum[lhs.size_ + rhs.size_]='\0' ;
+  String Res(sum) ;
+  delete sum;
+  return Res;
 }
 
