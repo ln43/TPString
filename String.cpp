@@ -27,12 +27,14 @@ String::String(const char* cstr){
     size_++;
     i++;
   }
+  if(size_>MAX_SIZE_){
+      size_=MAX_SIZE_; //we will only copy the 100 first characters
+  }
   grid_=new char[size_+1];
-  for(size_t i=0;i<=size_;i++){
+  for(size_t i=0;i<size_;i++){
     grid_[i]=cstr[i];
   }
   capacity_=size_;
-  
 }
 
 String::String(const String& model){
