@@ -40,15 +40,11 @@ String::String(const String& model){
   capacity_=model.capacity_;
   grid_=new char[size_+1];  //taking into account the \0
 
-
-  for(size_t i=0;i<size_;i++){ 
-
   for(size_t i=0;i<size_;i++){
-
     grid_[i]=model.grid_[i];
-    }
-  grid_[size_]='\0';
   }
+  grid_[size_]='\0';
+
 }
 
 // ===========================================================================
