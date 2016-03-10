@@ -170,7 +170,7 @@ void String::clear(){
   size_=0;
   }
 
-//test if the string is empty (if size_==0)
+//tests if the string is empty (if size_==0)
 bool String::empty() const{
   bool empty = false ;
   if (size_ == 0){
