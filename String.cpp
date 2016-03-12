@@ -164,7 +164,7 @@ size_t String::size(){
 void String::clear(){
 
   delete[] grid_;
-  grid_ = new char[1] ; //remplacer le 1 par la capacity?
+  grid_ = new char[capacity_] ; //remplacer le 1 par la capacity?
   grid_[0] ='\0' ;
   size_=0;
   }
@@ -205,7 +205,7 @@ void String::reserve(size_t n) {
   }
 }
 
-const String& String::operator=(String const& s1){
+String& String::operator=(String const& s1){
   delete[] grid_;
   grid_=new char[s1.size_+1];
   for(size_t i=0;i<s1.size_;i++){
